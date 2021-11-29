@@ -22,7 +22,7 @@
                     <label for="time">Time:</label>
                     <input type="datetime-local" id="time" name="time"><br><br>
                     <label for="seat">Seat:</label>
-                    <input type="number" id="seat" name="seat" min="1" placeholder="Enter seat limit here...""><br><br>
+                    <input type="number" id="seat" name="seat" min="1" max="10" placeholder="Enter seat limit here...""><br><br>
                     <label for="details">Details:</label><br>
                     <textarea name="message" rows="10" cols="70" placeholder="Enter details here..."></textarea></label><br><br>
                     <!-- <input type="text" id="details" name="details"><br><br> -->
