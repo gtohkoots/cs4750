@@ -30,7 +30,7 @@ include("mysql-helper.php");
                 <h3>Capacity: </h3>
             </li>
             <li class="list-group-item">
-                <h3>Deatils: </h3>
+                <h3>Details: </h3>
             </li>
             <li class="list-group-item text-center">
                 <button type="button" class="btn btn-lg">Reserve</button>
