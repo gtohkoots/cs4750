@@ -1,0 +1,14 @@
+.list-group-item {
+    background-color: inherit;
+    border-width: 0px;
+    margin: 20px;
+}
+.btn {
+    color: white;
+    background-color: inherit;
+    border-color: white;
+}
+.btn:hover {
+    background-color: #fff;
+    color:#f3a400;
+}
