@@ -1,3 +1,9 @@
+<?php 
+    session_start();
+    if(!isset($_SESSION['login'])){
+      header(location:"login.php");
+    }
+?>
 <body>
 <style>
     .nav-link {
@@ -31,7 +37,6 @@
     <span class="nameText">
       Hello, 
       <?php 
-        session_start();
           if(isset($_SESSION['name'])){
           echo $_SESSION['name'];
         }
