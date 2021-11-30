@@ -28,11 +28,37 @@ include("mysql-helper.php");
     }
 ?>
 
+<?php
+// $post_err = "";
+// $post_suc = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    foreach ($_POST as $rid => $value) {
+        $sql = "DELETE FROM reservation WHERE rid = ?";
+        execute_query($sql, array($rid));
+    }
+    header("Refresh:0");
+    // Make Post
+    // $param_cid = trim($_SESSION['cid']);
+    // $param_topic = trim($_POST['topic']);
+    // $param_time = trim($_POST['time']);
+    // $param_seat = trim($_POST['seat']);
+    // $param_detail = trim($_POST['details']);
+    // $sql="INSERT INTO post (`cid`, `time`, `details`, `capacity`, `tid`) VALUES (?, ?, ?, ?, ?)";
+    // $res = execute_query($sql,array($param_cid,$param_time,$param_detail,$param_seat,$param_topic));
+    // if($res['was_successful'] > 0){
+    //     $post_suc = "Post Made Successfuly!";
+    // } else {
+    //     $post_err = "Could Not Made Post!";
+    // }
+}
+?>
+
 <div class="container-fluid app-wrapper">
     <div class="white-bar"></div>
     <p class="display-4" style="color:black;">You’re viewing the list of posts you reserved</p>
     <div class="content-wrapper">
-        <form action="/action_page.php">
+        <form action="reservation.php" method="post">
         <table class="table">
         <thead class="thead-light">
             <tr>
@@ -50,14 +76,14 @@ include("mysql-helper.php");
                 <td><?php echo $reserv[$i]['name'];?></td>
                 <td><?php echo $reserv[$i]['time'];?></td>
                 <td><?php echo $reserv[$i]['capacity'];?></td>
-                <td><input type="checkbox" id="i3" name="i3" value="i3">
+                <?php echo "<td><input type='checkbox' id=".$reserv[$i]['rid']." name=".$reserv[$i]['rid'].">"?>                
                     <label for="i3"></label></td>
                 </tr>
             <?php endfor; ?>
         </tbody>
         </table>
         <li class="list-group-item text-center">
-            <button type="button" class="btn btn-lg">Cancel selected reservation(s)</button>
+            <button type="submit" class="btn btn-lg">Cancel selected reservation(s)</button>
         </li> 
         </form>
     </div>
