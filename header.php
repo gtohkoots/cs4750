@@ -18,17 +18,17 @@
     }
 </style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Hooshungry</a>
+  <a class="navbar-brand" href="mainpage.php">Hooshungry</a>
   <div class="collapse navbar-collapse" id="navbarText" style="color:#f3a400">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" href="#">My Posts</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">New Post</a>
+        <a class="nav-link" href="new.php">New Post</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Reservations</a>
+        <a class="nav-link" href="reservation.php">Reservations</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Log out</a>
