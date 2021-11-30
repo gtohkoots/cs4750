@@ -26,7 +26,6 @@ include("mysql-helper.php");
         $retrieve_result = execute_query($sql, array($cid));
         $reserv = $retrieve_result['rows_affected'];
     }
-    print_r($reserv)
 ?>
 
 <div class="container-fluid app-wrapper">
