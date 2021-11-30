@@ -12,6 +12,32 @@ include("mysql-helper.php");
 <link rel="stylesheet" href="main.css" />
 <link rel="stylesheet" href="editPost.css" />
 </head>
+<script>
+    function updateCapacity(pid){
+        var input = prompt("Please enter your new capacity");
+        $.ajax({
+            url: 'updatePost.php',
+            type: 'post',
+            data: { "updateCapacity": input, "pid":pid },
+            success: function(response) { 
+                alert(response); 
+                location.reload();
+            }
+        });
+    }
+    function updateDetails(pid){
+        var input = prompt("Please enter your new detail");
+        $.ajax({
+            url: 'updatePost.php',
+            type: 'post',
+            data: { "detail": input, "pid":pid },
+            success: function(response) { 
+                alert(response); 
+                location.reload();
+            }
+        });
+    }
+</script>
 <body>
 <?php include('header.php') ?>
 <?php 
@@ -32,10 +58,11 @@ include("mysql-helper.php");
             </li>
             <li class="list-group-item">
                 <h3>Capacity: <?php echo $result[0]["capacity"] ?></h3>
-                <button type="submit" class="btn btn-lg">Reserve</button>
+                <button type="button" class="btn btn-lg" onclick="updateCapacity(<?php echo $pid ?>)">Update</button>
             </li>
             <li class="list-group-item">
                 <h3>Details: <?php echo $result[0]["details"] ?></h3>
+                <button type="button" class="btn btn-lg" onclick="updateDetails(<?php echo $pid ?>)">Update</button>
             </li>
             <?php 
                 if(!empty($post_err)){

@@ -34,7 +34,7 @@ include("mysql-helper.php");
         else {
             //if we pass the check, insert the new record
             $insert_result = execute_query($insertsql, array($cid,$pid));
-            if($insert_result['was_successful']){
+            if($insert_result['was_successful']) {
                 $post_suc = "insert success!";
             }
             else {

@@ -5,6 +5,9 @@ $password = 'password';
 $host = 'localhost';
 $dbname = 'hooshangry';
 
+header("Access-Control-Allow-Origin: *");
+header("Set-Cookie: cross-site-cookie=whatever; SameSite=None; Secure");
+
 $dsn = "mysql:host=$host;dbname=$dbname";
 
 /** connect to the database **/
