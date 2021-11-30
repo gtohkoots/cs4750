@@ -21,16 +21,25 @@ include("mysql-helper.php");
     $result = execute_query($sql,array($pid))['rows_affected'];
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         // insert a new record to the db
+        $post_err = $post_suc = "";
+        $checksql = "SELECT * FROM reservation WHERE cid=? AND pid = ?";
         $insertsql = "insert into reservation(cid,pid) values (?,?)";
         $cid = $_SESSION['cid'];
         $param_pid = $_GET['pid'];
-        echo $param_pid;
-        $insert_result = execute_query($insertsql, array($cid,$pid));
-        if($insert_result['was_successful']){
-            echo "success";
+        $select_result = execute_query($checksql,array($cid,$pid));
+        //check duplicate data
+        if($select_result['row_count'] > 0){
+            $post_err = "you have already reserved this event!";
         }
         else {
-            echo $insert_result['error_info'];
+            //if we pass the check, insert the new record
+            $insert_result = execute_query($insertsql, array($cid,$pid));
+            if($insert_result['was_successful']){
+                $post_suc = "insert success!";
+            }
+            else {
+                $post_err = $insert_result['error_info'];
+            }
         }
     }
 ?>
@@ -51,6 +60,16 @@ include("mysql-helper.php");
             <li class="list-group-item">
                 <h3>Details: <?php echo $result[0]["details"] ?></h3>
             </li>
+            <?php 
+                if(!empty($post_err)){
+                    echo '<div class="alert alert-danger">' . $post_err . '</div>';
+                }        
+                if(!empty($post_suc)){
+                    echo '<div class="alert alert-success">' . $post_suc . '</div>';
+                    sleep(3);
+                    header("location: mainpage.php");
+                }        
+            ?>
             <li class="list-group-item text-center">
                 <form action="" method="post">
                     <button type="submit" class="btn btn-lg">Reserve</button>
