@@ -17,6 +17,7 @@ include("mysql-helper.php");
 <?php include('header.php') ?>
 
 <?php 
+    // fetch topics for form later
     $cid = "";
     $topics = array();
     if(isset($_SESSION['cid'])){

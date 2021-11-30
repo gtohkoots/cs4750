@@ -15,13 +15,27 @@ include("mysql-helper.php");
 
 <body>
 <?php include('header.php') ?>
+
+<?php 
+    // fetch reservations of user
+    $reserv = array();
+    if(isset($_SESSION['cid'])){
+        $cid = $_SESSION['cid'];
+        // retreieve posts from other users
+        $sql = "SELECT * FROM reservation as r JOIN post as p ON r.pid=p.pid JOIN user ON p.cid=user.cid NATURAL JOIN topic WHERE r.cid = ?";
+        $retrieve_result = execute_query($sql, array($cid));
+        $reserv = $retrieve_result['rows_affected'];
+    }
+    print_r($reserv)
+?>
+
 <div class="container-fluid app-wrapper">
     <div class="white-bar"></div>
     <p class="display-4" style="color:black;">You’re viewing the list of posts you reserved</p>
     <div class="content-wrapper">
         <form action="/action_page.php">
         <table class="table">
-        <thead class="thead-dark">
+        <thead class="thead-light">
             <tr>
             <th scope="col" style="width: 40%">Host Name</th>
             <th scope="col" style="width: 35%">Topic</th>
@@ -31,30 +45,16 @@ include("mysql-helper.php");
             </tr>
         </thead>
         <tbody>
-            <tr>
-            <th scope="row">A</th>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Otto</td>
-            <td><input type="checkbox" id="i1" name="i1" value="i1">
-                <label for="i1"></label></td>
-            </tr>
-            <tr>
-            <th scope="row">J</th>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>Otto</td>
-            <td><input type="checkbox" id="i2" name="i2" value="i2">
-                <label for="i2"></label></td>
-            </tr>
-            <tr>
-            <th scope="row">L</th>
-            <td>the Bird</td>
-            <td>@twitter</td>
-            <td>Otto</td>
-            <td><input type="checkbox" id="i3" name="i3" value="i3">
-                <label for="i3"></label></td>
-            </tr>
+            <?php for($i = 0; $i < count($reserv); $i++): ?>
+                <tr>
+                <th scope="row"><?php echo $reserv[$i]['fname'];?></th>
+                <td><?php echo $reserv[$i]['name'];?></td>
+                <td><?php echo $reserv[$i]['time'];?></td>
+                <td><?php echo $reserv[$i]['capacity'];?></td>
+                <td><input type="checkbox" id="i3" name="i3" value="i3">
+                    <label for="i3"></label></td>
+                </tr>
+            <?php endfor; ?>
         </tbody>
         </table>
         <li class="list-group-item text-center">
