@@ -49,7 +49,7 @@ include("mysql-helper.php");
                 <h3>Capacity: <?php echo $result[0]["capacity"] ?></h3>
             </li>
             <li class="list-group-item">
-                <h3>Deatils: <?php echo $result[0]["details"] ?></h3>
+                <h3>Details: <?php echo $result[0]["details"] ?></h3>
             </li>
             <li class="list-group-item text-center">
                 <form action="" method="post">
