@@ -14,7 +14,16 @@ include("mysql-helper.php");
 </head>
 
 <body>
-<?php include('header.php') ?>
+<?php 
+    error_reporting(E_ALL & ~E_NOTICE);
+    session_start();
+    if(isset($_SESSION['role']) && $_SESSION['role'] == 'student'){
+        include('header.php');
+    }
+    else {
+        include('adminHeader.php');
+    }
+?>
 <?php
     $pid = $_GET['pid'];
     $sql = "SELECT fname, lname, name, details, time, capacity FROM user NATURAL JOIN topic NATURAL JOIN post WHERE pid = ?";
@@ -70,11 +79,13 @@ include("mysql-helper.php");
                     header("location: mainpage.php");
                 }        
             ?>
-            <li class="list-group-item text-center">
-                <form action="" method="post">
-                    <button type="submit" class="btn btn-lg">Reserve</button>
-                </form>
-            </li> 
+            <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'student'){ ?>
+                <li class="list-group-item text-center">
+                    <form action="" method="post">
+                        <button type="submit" class="btn btn-lg">Reserve</button>
+                    </form>
+                </li> 
+            <?php } ?>
         </div>
     </div>
 </div>

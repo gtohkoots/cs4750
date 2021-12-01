@@ -15,9 +15,13 @@ include("mysql-helper.php");
 // session start
 session_start();
 
-if(isset($_SESSION['login']))
+if(isset($_SESSION['login']) && $_SESSION['role'] == 'student')
 {
     header("location: mainpage.php");
+    exit;
+}
+else if(isset($_SESSION['login']) && $_SESSION['role'] == 'admin'){
+    header("location: adminPage.php");
     exit;
 }
 
@@ -32,11 +36,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $login_result = execute_query($sql,array($param_cid,$param_pwd));
     //check if a valid user exist
     if($login_result['row_count'] > 0){
-        //update session
-        $_SESSION['login'] = True;
-        $_SESSION['cid'] = $param_cid;
-        $_SESSION['name'] = $login_result['rows_affected'][0]['lname'];
-        header("location: mainpage.php");
+        //update session, check user role
+        if($login_result['rows_affected'][0]['role'] == "student") {
+            $_SESSION['login'] = True;
+            $_SESSION['role'] = 'student';
+            $_SESSION['cid'] = $param_cid;
+            $_SESSION['name'] = $login_result['rows_affected'][0]['lname'];
+            header("location: mainpage.php");
+        }
+        else {
+            $_SESSION['login'] = True;
+            $_SESSION['role'] = 'admin';
+            $_SESSION['cid'] = $param_cid;
+            $_SESSION['name'] = $login_result['rows_affected'][0]['lname'];
+            header("location: adminPage.php");
+        }
     }
     else {
         $login_err = "Invalid username or password";
