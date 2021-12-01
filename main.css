@@ -5,6 +5,7 @@
     background-color: #f3a400;
     color: white;
     height: 100%;
+    overflow: auto;
 }
 .white-bar {
     background-color: white;
