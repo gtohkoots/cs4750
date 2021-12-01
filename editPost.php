@@ -8,7 +8,7 @@ include("mysql-helper.php");
 <meta name="author" content="Ketian Tu">
 <meta name="description" content="My Post">
 
-<title>My Post</title>
+<title>Edit Post</title>
 <link rel="stylesheet" href="main.css" />
 <link rel="stylesheet" href="editPost.css" />
 </head>

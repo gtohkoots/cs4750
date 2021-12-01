@@ -59,6 +59,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <div class="mb-3">
                     <button class ="btn btn-primary d-block w-100" type="submit">Log In</button>
                 </div>
+                <div class="mb-3">
+                    <p style='text-align:center'>Don't Have an Account?</p>
+                    <a class ="btn btn-warning d-block w-100" href="newAccount.php">Create Account</a>
+                </div>
             </form>
             <?php 
                     if(!empty($login_err)){

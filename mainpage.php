@@ -8,7 +8,7 @@ include("mysql-helper.php");
 <meta name="author" content="Ketian Tu">
 <meta name="description" content="Main Page">
 
-<title>Login</title>
+<title>Home</title>
 <link rel="stylesheet" href="mainpage.css" />
 <link rel="stylesheet" href="main.css" />
 </head>
@@ -49,7 +49,7 @@ include("mysql-helper.php");
             <option value=3>Time Ascending</option>
             <option value=4>Time Descending</option>
             </select>
-            <input type="submit" value="Sort" class="btn btn-primary">
+            <input type="submit" value="Sort" class="btn btn-info">
         </form>
         <div class="list-group">
             <?php for($i = 0; $i < count($posts); $i++): ?>

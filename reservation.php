@@ -8,7 +8,7 @@ include("mysql-helper.php");
 <meta name="author" content="Ketian Tu">
 <meta name="description" content="Main Page">
 
-<title>Login</title>
+<title>Reservation</title>
 <link rel="stylesheet" href="main.css" />
 <link rel="stylesheet" href="postDetail.css" />
 </head>
