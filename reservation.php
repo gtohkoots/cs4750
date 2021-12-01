@@ -76,7 +76,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <td onclick="window.location='postDetail.php?pid=<?php echo $reserv[$i]['pid'] ?>';"><?php echo $reserv[$i]['name'];?></td>
                 <td onclick="window.location='postDetail.php?pid=<?php echo $reserv[$i]['pid'] ?>';"><?php echo $reserv[$i]['time'];?></td>
                 <td onclick="window.location='postDetail.php?pid=<?php echo $reserv[$i]['pid'] ?>';"><?php echo $reserv[$i]['capacity'];?></td>
-                <?php echo "<td><input type='checkbox' id=".$reserv[$i]['rid']." name=".$reserv[$i]['rid'].">"?>                
+                <td> <?php echo "<input type='checkbox' id=".$reserv[$i]['rid']." name=".$reserv[$i]['rid'].">"?>                
                     <label for="i3"></label>
                 </tr>
             <?php endfor; ?>

@@ -92,10 +92,16 @@ include("mysql-helper.php");
             <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'student'){ ?>
                 <li class="list-group-item text-center">
                     <form action="" method="post">
-                        <button type="submit" class="btn btnn btn-lg">Reserve</button>
+                        <!-- <input type="checkbox" class="form-check-input" id="notif"> -->
+                        <input type="checkbox" style="width:5vh; height:5vh;" id="notif">
+                        <p>(Check box to receive notification)</p>
                         <button type="button" class="btn btnnn btn-lg btn-danger" data-toggle="modal" data-target="#exampleModal">
                         Report User
                         </button>
+                        <button type="submit" class="btn btnn btn-lg">Reserve
+                        </button>
+                        
+                        
                     </form>
                 </li> 
 
