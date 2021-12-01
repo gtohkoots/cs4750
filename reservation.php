@@ -83,7 +83,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </tbody>
         </table>
         <li class="list-group-item text-center">
-            <button type="submit" class="btn btn-lg">Cancel selected reservation(s)</button>
+            <button type="submit" class="btn btnn btn-lg">Cancel selected reservation(s)</button>
         </li> 
         </form>
     </div>

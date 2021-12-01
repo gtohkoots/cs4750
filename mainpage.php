@@ -15,6 +15,7 @@ include("mysql-helper.php");
 
 <body>
 <?php include('header.php') ?>
+
 <?php 
     $cid = "";
     $posts = array();

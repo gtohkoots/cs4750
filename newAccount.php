@@ -89,7 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }     
         ?>
         <li class="list-group-item text-center">
-            <input type="submit" value="Make Account!" class="btn btn-lg">
+            <input type="submit" value="Make Account!" class="btn btnn btn-lg">
         </li> 
         </form>
     </div>

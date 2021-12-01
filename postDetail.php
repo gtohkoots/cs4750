@@ -87,8 +87,7 @@ include("mysql-helper.php");
                     echo '<div class="alert alert-success">' . $post_suc . '</div>';
                     sleep(3);
                     header("location: mainpage.php");
-                }   
-                print_r($report_cat);     
+                }      
             ?>
             <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'student'){ ?>
                 <li class="list-group-item text-center">

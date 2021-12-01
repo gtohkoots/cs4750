@@ -1,7 +1,22 @@
 <?php
 // Connecting to DB on XAMPP
-$username = 'root';
-$password = 'password';
+// $username = 'root';
+// $password = 'password';
+
+session_start();
+if(!isset($_SESSION['login'])){
+   $username = 'login';
+   $password = 'login';
+} else {
+   if ($_SESSION['role']=='student') {
+      $username = 'student';
+      $password = 'student';
+   } else {
+      $username = 'root';
+      $password = 'password';
+   }
+}
+
 $host = 'localhost';
 $dbname = 'hooshangry';
 

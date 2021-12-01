@@ -12,8 +12,6 @@ include("mysql-helper.php");
     <link rel="stylesheet" href="login.css" />
 </head>
 <?php
-// session start
-session_start();
 
 if(isset($_SESSION['login']) && $_SESSION['role'] == 'student')
 {
