@@ -16,3 +16,23 @@
 .list-group {
     list-style-type: none;
 }
+
+li.cell {
+    display: table;
+    width: 100%;
+    table-layout: fixed;    /* For cells of equal size */
+}
+li.cell span {
+    display: table-cell;
+    text-align: center;
+}
+
+li.cell span.first {
+    display: table-cell;
+    text-align: left;
+}
+
+li.cell span.last {
+    display: table-cell;
+    text-align: right;
+}

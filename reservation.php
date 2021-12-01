@@ -71,7 +71,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </thead>
         <tbody>
             <?php for($i = 0; $i < count($reserv); $i++): ?>
-                <tr>
+                <tr onclick="window.location='postDetail.php?pid=<?php echo $reserv[$i]['pid'] ?>';">
                 <th scope="row"><?php echo $reserv[$i]['fname'];?></th>
                 <td><?php echo $reserv[$i]['name'];?></td>
                 <td><?php echo $reserv[$i]['time'];?></td>
