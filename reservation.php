@@ -71,13 +71,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </thead>
         <tbody>
             <?php for($i = 0; $i < count($reserv); $i++): ?>
-                <tr onclick="window.location='postDetail.php?pid=<?php echo $reserv[$i]['pid'] ?>';">
-                <th scope="row"><?php echo $reserv[$i]['fname'];?></th>
-                <td><?php echo $reserv[$i]['name'];?></td>
-                <td><?php echo $reserv[$i]['time'];?></td>
-                <td><?php echo $reserv[$i]['capacity'];?></td>
+                <tr>
+                <th scope="row" onclick="window.location='postDetail.php?pid=<?php echo $reserv[$i]['pid'] ?>';"><?php echo $reserv[$i]['fname'];?></th>
+                <td onclick="window.location='postDetail.php?pid=<?php echo $reserv[$i]['pid'] ?>';"><?php echo $reserv[$i]['name'];?></td>
+                <td onclick="window.location='postDetail.php?pid=<?php echo $reserv[$i]['pid'] ?>';"><?php echo $reserv[$i]['time'];?></td>
+                <td onclick="window.location='postDetail.php?pid=<?php echo $reserv[$i]['pid'] ?>';"><?php echo $reserv[$i]['capacity'];?></td>
                 <?php echo "<td><input type='checkbox' id=".$reserv[$i]['rid']." name=".$reserv[$i]['rid'].">"?>                
-                    <label for="i3"></label></td>
+                    <label for="i3"></label>
                 </tr>
             <?php endfor; ?>
         </tbody>
