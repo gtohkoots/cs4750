@@ -100,7 +100,7 @@ include("mysql-helper.php");
                 if(!empty($post_suc)){
                     echo '<div class="alert alert-success">' . $post_suc . '</div>';
                     sleep(3);
-                    // header("location: mainpage.php");
+                    header("location: mainpage.php");
                 }      
             ?>
             <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'student'){ ?>
