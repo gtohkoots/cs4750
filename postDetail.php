@@ -32,7 +32,7 @@ include("mysql-helper.php");
         // insert a new record to the db
         $post_err = $post_suc = "";
         $checksql = "SELECT * FROM reservation WHERE cid=? AND pid = ?";
-        $insertsql = "insert into reservation(cid,pid) values (?,?)";
+        $insertsql = "INSERT INTO reservation(cid,pid) values (?,?)";
         $cid = $_SESSION['cid'];
         $param_pid = $_GET['pid'];
         $select_result = execute_query($checksql,array($cid,$pid));
@@ -44,6 +44,20 @@ include("mysql-helper.php");
             //if we pass the check, insert the new record
             $insert_result = execute_query($insertsql, array($cid,$pid));
             if($insert_result['was_successful']) {
+                // if notif checked also add to pushes and notification
+                if($_POST['notif']) {
+                    $getemailsql = "SELECT email FROM user_email WHERE cid=?";
+                    $param_email = execute_query($getemailsql, array($cid))['rows_affected'][0]['email'];
+                    $time = new DateTime($result[0]["time"]);
+                    $time->modify("-1 day");
+                    $notifsql = "INSERT INTO `notification` (notifytime, cid, email) VALUES (?, ?, ?)";
+                    $notif_res = execute_query($notifsql, array($time->format("Y-m-d H:i:s"), $cid, $param_email));
+
+                    $rid = execute_query("SELECT rid FROM reservation WHERE cid=? AND pid=?", array($cid,$pid))['rows_affected'][0]['rid'];
+                    $nid = execute_query("SELECT nid FROM `notification` WHERE notifytime=? AND cid=? AND email=?", array($time->format("Y-m-d H:i:s"), $cid, $param_email))['rows_affected'][0]['nid'];
+
+                    execute_query("INSERT INTO pushes values (?,?)", array($rid, $nid));
+                }
                 $post_suc = "insert success!";
             }
             else {
@@ -86,19 +100,19 @@ include("mysql-helper.php");
                 if(!empty($post_suc)){
                     echo '<div class="alert alert-success">' . $post_suc . '</div>';
                     sleep(3);
-                    header("location: mainpage.php");
+                    // header("location: mainpage.php");
                 }      
             ?>
             <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'student'){ ?>
                 <li class="list-group-item text-center">
                     <form action="" method="post">
                         <!-- <input type="checkbox" class="form-check-input" id="notif"> -->
-                        <input type="checkbox" style="width:5vh; height:5vh;" id="notif">
+                        <input name="notif" type="checkbox" style="width:5vh; height:5vh;" id="notif">
                         <p>(Check box to receive notification)</p>
+                        <button type="submit" class="btn btnn btn-lg">Reserve
+                        </button>
                         <button type="button" class="btn btnnn btn-lg btn-danger" data-toggle="modal" data-target="#exampleModal">
                         Report User
-                        </button>
-                        <button type="submit" class="btn btnn btn-lg">Reserve
                         </button>
                         
                         

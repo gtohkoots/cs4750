@@ -66,6 +66,22 @@ include("mysql-helper.php");
         </div>
     </div>
 </div>
+
+<?php 
+    $get_notif = "SELECT * FROM `notification` NATURAL JOIN `pushes` NATURAL JOIN reservation JOIN post ON reservation.pid=post.pid JOIN user ON post.cid=user.cid WHERE notifytime <= UTC_TIMESTAMP() AND `time` >= UTC_TIMESTAMP() AND reservation.cid=?";
+    $notifs = execute_query($get_notif,array($_SESSION['cid']))['rows_affected'];
+    $script = "";
+    for($i = 0; $i < count($notifs); $i++):
+        $time = new DateTime($notifs[$i]['time']);
+        $now = new DateTime();
+        echo $time->format("Y-m-d H:i:s");
+        echo $now->format("Y-m-d H:i:s");
+        $diff = $time->diff($now);
+        $message = "'Your reservation for \"".$notifs[$i]['details']."\" by ".$notifs[$i]['fname']." ".$notifs[$i]["lname"]." is coming up in ".$diff->format('%h hours %i minutes and %s seconds')."!'";
+        $script = $script."\nalert(".$message.");";
+    endfor;
+    echo "<script>window.onload = function(){ ".$script." }</script>";
+?>
 </body>
 
 </html>
