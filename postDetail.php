@@ -80,17 +80,17 @@ include("mysql-helper.php");
     <div class="white-bar"></div>
     <p class="display-4" style="color:black;">You're viewing a post of <?php echo $result[0]["fname"] . " " .$result[0]["lname"] ?></p>
     <div class="content-wrapper">
-        <div class="list-group">
-            <li class="list-group-item">
+        <ul class="list-group">
+            <li class="list-group-item list-group-item2">
                 <h3>Topic: <?php echo $result[0]["name"] ?></h3>
             </li>
-            <li class="list-group-item">
+            <li class="list-group-item list-group-item2">
                 <h3>Time: <?php echo $result[0]["time"] ?></h3>
             </li>
-            <li class="list-group-item">
+            <li class="list-group-item list-group-item2">
                 <h3>Capacity: <?php echo $result[0]["capacity"] ?></h3>
             </li>
-            <li class="list-group-item">
+            <li class="list-group-item list-group-item2">
                 <h3>Details: <?php echo $result[0]["details"] ?></h3>
             </li>
             <?php 
@@ -99,12 +99,10 @@ include("mysql-helper.php");
                 }        
                 if(!empty($post_suc)){
                     echo '<div class="alert alert-success">' . $post_suc . '</div>';
-                    sleep(3);
-                    header("location: mainpage.php");
                 }      
             ?>
             <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'student'){ ?>
-                <li class="list-group-item text-center">
+                <li class="list-group-item text-center" style="background-color: inherit">
                     <form action="" method="post">
                         <!-- <input type="checkbox" class="form-check-input" id="notif"> -->
                         <input name="notif" type="checkbox" style="width:5vh; height:5vh;" id="notif">
@@ -123,7 +121,7 @@ include("mysql-helper.php");
 
                 <!-- Modal -->
             <?php } ?>
-        </div>
+        </ul>
     </div>
 </div>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -3,6 +3,14 @@
     border-width: 0px;
     margin: 20px;
 }
+.list-group-item2 {
+    background-color: white;
+    color: #f3a400;
+    border-radius: 1em;
+    font-family: "Comic Sans MS", "Comic Sans";
+    border-width: 0px;
+    margin: 20px;
+}
 .btnn {
     color: white;
     background-color: inherit;
